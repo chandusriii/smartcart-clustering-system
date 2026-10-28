@@ -49,6 +49,26 @@ A four-cluster sensitivity check shows the following comparison:
 
 For this run, internal metrics favour the PCA representation at K=4, but the three PCs retain only 49.89% of variance. Treat this as a representation trade-off, not proof that PCA is always better. The small K-Means seed check gave Adjusted Rand Index 1.0000 for seeds 42 vs 43 and 0.9968 for seeds 42 vs 44; this is only a small reproducibility check, not a full stability study.
 
+## Visual results
+
+### K selection: silhouette score
+
+![Silhouette score by K](outputs/figures/silhouette_scores.svg)
+
+The highest silhouette in the tested K=2–10 range is K=10, but cluster count should also reflect interpretable profiles, practical cluster sizes, and stability.
+
+### Feature-space sensitivity
+
+![PCA versus full-feature clustering comparison](outputs/figures/representation_sensitivity.svg)
+
+For this run, the K=4 internal metrics are higher in the three-component PCA representation. The first three components retain 49.89% of variance, so compare interpretability and information retained before choosing the final representation.
+
+### Correlation highlights
+
+![Strongest selected feature correlations](outputs/figures/correlation_highlights.svg)
+
+Income and total spending, catalog purchases and total spending, and purchase channel activity are strongly associated in the data. These relationships are descriptive and do not establish causation.
+
 ## Repository guide
 
 - [Executed analysis notebook](notebooks/smartcart_customer_segmentation.ipynb)
