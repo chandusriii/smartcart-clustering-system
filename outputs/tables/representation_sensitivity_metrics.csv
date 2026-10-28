@@ -1,0 +1,5 @@
+algorithm,clusters,silhouette,calinski_harabasz,davies_bouldin
+K-Means - PCA (3 components),4,0.409201,1430.785207,1.036284
+Agglomerative - PCA (3 components),4,0.360983,1222.029252,0.914442
+K-Means - Full standardized features,4,0.168713,367.378803,1.815556
+Agglomerative - Full standardized features,4,0.154884,311.777812,2.026018
