@@ -47,19 +47,23 @@ def main() -> None:
 
     drop_cols = ["ID", "Year_Birth", "Marital_Status", "Kidhome", "Teenhome", "Dt_Customer", *spending_cols]
     cleaned = df.drop(columns=drop_cols).copy()
+
+    # Inspect the unfiltered distributions before removing any records.
+    outlier_cols = ["Income", "Recency", "Age", "Total_Spending", "Total_Children"]
+    fig, axes = plt.subplots(len(outlier_cols), 1, figsize=(10, 12))
+    for ax, col in zip(axes, outlier_cols):
+        sns.boxplot(x=cleaned[col], ax=ax)
+        ax.set_title(f"Before filtering — {col}")
+    fig.tight_layout()
+    fig.savefig(FIGURES_DIR / "outlier_boxplots_before.png", dpi=160)
+    plt.close(fig)
+
     before = len(cleaned)
     age_removed = int((cleaned["Age"] >= 90).sum())
     income_removed = int((cleaned["Income"] >= 600_000).sum())
     cleaned = cleaned[cleaned["Age"] < 90].copy()
     cleaned = cleaned[cleaned["Income"] < 600_000].copy()
     print(f"Rows before filters: {before}; age-rule count: {age_removed}; income-rule count: {income_removed}; retained: {len(cleaned)}")
-
-    outlier_cols = ["Income", "Recency", "Age", "Total_Spending", "Total_Children"]
-    fig, axes = plt.subplots(len(outlier_cols), 1, figsize=(10, 12))
-    for ax, col in zip(axes, outlier_cols):
-        sns.boxplot(x=cleaned[col], ax=ax)
-        ax.set_title(f"Before filtering — {col}")
-    fig.tight_layout(); fig.savefig(FIGURES_DIR / "outlier_boxplots_before.png", dpi=160); plt.close(fig)
 
     corr = cleaned.corr(numeric_only=True)
     fig, ax = plt.subplots(figsize=(13, 10))
