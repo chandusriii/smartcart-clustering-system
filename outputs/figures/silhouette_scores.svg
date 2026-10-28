@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+<title id="title">Silhouette score by number of clusters</title><desc id="desc">Silhouette values for K from 2 to 10. The highest value in this tested range is near K equals 10.</desc>
+<rect width="920" height="520" fill="#ffffff"/><text x="460" y="42" font-family="Arial,sans-serif" font-size="25" font-weight="700" text-anchor="middle" fill="#17324d">Silhouette Score by K</text>
+<text x="460" y="70" font-family="Arial,sans-serif" font-size="14" text-anchor="middle" fill="#536577">Three-component PCA representation · K = 2–10</text>
+<g stroke="#dce5ed" stroke-width="1">
+<line x1="110" y1="390" x2="835" y2="390"/><line x1="110" y1="318" x2="835" y2="318"/><line x1="110" y1="246" x2="835" y2="246"/><line x1="110" y1="174" x2="835" y2="174"/><line x1="110" y1="102" x2="835" y2="102"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="13" fill="#536577" text-anchor="end">
+<text x="96" y="395">0.36</text><text x="96" y="323">0.38</text><text x="96" y="251">0.40</text><text x="96" y="179">0.42</text><text x="96" y="107">0.44</text>
+</g>
+<g stroke="#95a7b9" stroke-width="1"><line x1="110" y1="90" x2="110" y2="390"/><line x1="110" y1="390" x2="835" y2="390"/></g>
+<polyline points="130,342.6 216,331.5 302,212.9 388,168.2 474,183.1 560,111.5 646,69 732,69.6 818,68.0" fill="none" stroke="#1877a8" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<g fill="#1877a8" stroke="#ffffff" stroke-width="2">
+<circle cx="130" cy="342.6" r="6"/><circle cx="216" cy="331.5" r="6"/><circle cx="302" cy="212.9" r="6"/><circle cx="388" cy="168.2" r="6"/><circle cx="474" cy="183.1" r="6"/><circle cx="560" cy="111.5" r="6"/><circle cx="646" cy="69" r="6"/><circle cx="732" cy="69.6" r="6"/><circle cx="818" cy="68.0" r="6"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="13" fill="#31465a" text-anchor="middle">
+<text x="130" y="364">0.3732</text><text x="216" y="353">0.3762</text><text x="302" y="234">0.4092</text><text x="388" y="190">0.4218</text><text x="474" y="205">0.4177</text><text x="560" y="133">0.4377</text><text x="646" y="91">0.4493</text><text x="732" y="92">0.4491</text><text x="818" y="91">0.4496</text>
+</g>
+<g font-family="Arial,sans-serif" font-size="14" fill="#536577" text-anchor="middle">
+<text x="130" y="415">2</text><text x="216" y="415">3</text><text x="302" y="415">4</text><text x="388" y="415">5</text><text x="474" y="415">6</text><text x="560" y="415">7</text><text x="646" y="415">8</text><text x="732" y="415">9</text><text x="818" y="415">10</text><text x="472" y="455" font-size="16" font-weight="600">Number of clusters (K)</text>
+</g>
+<rect x="104" y="475" width="732" height="28" rx="6" fill="#eef6fa"/><text x="470" y="494" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#2b536a">K=10 has the highest tested silhouette; review interpretability and cluster sizes before choosing K.</text>
+</svg>
