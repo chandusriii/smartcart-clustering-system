@@ -1,90 +1,78 @@
 # SmartCart Customer Segmentation System
 
-An unsupervised machine learning minor project to discover customer segments from SmartCart customer demographics, purchasing behaviour, and engagement activity.
+**Minor Project | Unsupervised Machine Learning | Customer Analytics**
+
+An end-to-end exploratory customer segmentation project using data cleaning, feature engineering, correlation analysis, encoding, scaling, PCA, K selection, clustering, and cluster profiling.
 
 ## Problem statement
 
-SmartCart has customer records containing demographic attributes, purchase amounts, purchase-channel frequency, and engagement indicators. A single generic marketing strategy may overlook meaningful differences between customer groups. This project explores customer segmentation with unsupervised learning so that groups can be described and used as starting points for personalised marketing analysis.
-
-## Project objectives
-
-- Inspect and validate the customer dataset.
-- Handle missing values and examine duplicates and outliers.
-- Engineer interpretable features such as age, customer tenure, total spending, and household children.
-- Remove identifiers and features that are inappropriate for distance-based clustering.
-- Explore feature relationships with descriptive statistics and a correlation heatmap.
-- Encode categorical values and scale numerical features.
-- Use PCA for dimensionality reduction and visual exploration.
-- Use the Elbow method and Silhouette score to investigate candidate values of K.
-- Compare K-Means and Agglomerative Clustering using internal clustering metrics.
-- Profile clusters using original-scale business features and document limitations.
+SmartCart has customer demographic, purchase behaviour, and engagement data, but generic marketing may overlook meaningful differences between customers. This project explores customer groups that could inform more focused engagement hypotheses. It is an unsupervised segmentation project, not a supervised churn predictor.
 
 ## Workflow
 
-1. **Understand the data** — inspect dimensions, types, distributions, missing values, and duplicates.
-2. **Clean and engineer features** — impute missing income values, derive customer-level features, and review filtering decisions.
-3. **Explore relationships** — review distributions, outlier behaviour, and correlations.
-4. **Prepare features** — encode categories, scale numeric columns, and keep customer IDs out of model inputs.
-5. **Reduce dimensions** — use PCA for exploratory visualization and optionally compare with clustering on the full scaled feature matrix.
-6. **Select clustering settings** — compare WCSS and silhouette scores across candidate K values instead of assuming a fixed K is optimal.
-7. **Fit and evaluate** — compare K-Means and hierarchical clustering using silhouette, Calinski–Harabasz, and Davies–Bouldin scores.
-8. **Profile segments** — examine counts and original-unit summaries before assigning understandable names.
+1. Inspect dataset shape, types, missing values, unique values, and duplicates.
+2. Impute missing income values using the median.
+3. Engineer age, customer tenure, total spending, and total children.
+4. Drop identifiers and redundant original fields after feature engineering.
+5. Inspect outliers with boxplots and apply documented project filters.
+6. Explore numerical relationships with a correlation heatmap.
+7. One-hot encode categorical features and scale the model matrix.
+8. Apply PCA for dimensionality reduction and visualization.
+9. Compare K candidates using WCSS/Elbow and Silhouette diagnostics.
+10. Fit K-Means and Agglomerative Clustering.
+11. Compare internal metrics and characterize clusters using original-scale statistics.
 
-## Repository structure
+## Baseline results
 
-```text
-smartcart-clustering-system/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── data/
-│   └── smartcart_customers.csv
-├── notebooks/
-│   ├── smartcart_customer_segmentation.ipynb
-│   └── smartcart_original_notebook.ipynb
-├── src/
-│   └── smartcart_customer_segmentation.py
-├── docs/
-│   ├── PROJECT_REPORT.md
-│   └── METHODOLOGY_AND_DECISIONS.md
-├── reports/
-│   └── SmartCart_Customer_Segmentation_Report.pdf
-└── outputs/
-    ├── figures/
-    └── tables/
-```
+- Input data: 2,240 rows and 22 columns.
+- 24 missing values were found in `Income`; median imputation used 51,381.50.
+- No duplicate complete rows were found.
+- The documented age and income filters retained 2,236 customers.
+- The first three principal components explain 49.89% of standardized feature variance.
+- In the tested range K=2–10, the highest silhouette score occurred at K=10 (about 0.4496). K=4 is retained as the baseline for comparing the two algorithms; it is **not** claimed to be the optimal segmentation.
 
-> Note: this tree describes the intended full project layout. Add the corresponding files and folders to the repository before treating the project as fully published.
+| Baseline model on 3-component PCA | K | Silhouette ↑ | Calinski–Harabasz ↑ | Davies–Bouldin ↓ |
+|---|---:|---:|---:|---:|
+| K-Means | 4 | 0.4092 | 1430.79 | 1.0363 |
+| Agglomerative (Ward linkage) | 4 | 0.3610 | 1222.03 | 0.9144 |
+
+The metrics do not unanimously favour a single model. Review segment profiles, stability, and business interpretability before selecting a final approach.
+
+## Repository guide
+
+- [Executed analysis notebook](notebooks/smartcart_customer_segmentation.ipynb)
+- [Original notebook preserved for reference](notebooks/smartcart_original_notebook.ipynb)
+- [Python implementation](src/smartcart_customer_segmentation.py)
+- [Detailed project report (Markdown)](reports/SmartCart_Customer_Segmentation_Report.md)
+- [Methodology and implementation decisions](docs/METHODOLOGY_AND_DECISIONS.md)
+- [Generated results and tables](outputs/README.md)
+- [Clustering metrics](outputs/tables/clustering_metrics.csv)
+- [K-Means mean profiles](outputs/tables/kmeans_cluster_mean_profile.csv)
 
 ## Setup
 
-Use Python 3.10 or newer. From the repository root:
+Python 3.10+ is recommended.
 
 ```bash
 python -m venv .venv
 ```
 
-Activate the environment, then install requirements:
+Activate the virtual environment, then:
 
 ```bash
 python -m pip install -r requirements.txt
+python src/smartcart_customer_segmentation.py
 ```
 
-Launch Jupyter:
+Or run `notebooks/smartcart_customer_segmentation.ipynb` from top to bottom.
 
-```bash
-jupyter notebook
-```
+## Important interpretation notes
 
-Open `notebooks/smartcart_customer_segmentation.ipynb` and run the cells from top to bottom. If using the Python script, run it from the repository root so relative paths resolve as expected.
+Cluster IDs are arbitrary labels, not rankings. Assign business names only after examining the actual profile statistics. Silhouette and other internal scores describe geometric structure; they do not establish churn propensity, causal effects, marketing lift, or retention improvement. Compare PCA-space clustering with clustering on the full standardized feature matrix and check stability before making strong claims.
 
-## Interpreting results responsibly
+## Dataset licensing and privacy
 
-Cluster labels are arbitrary identifiers, not rankings. A cluster should only be described as high-spending, discount-oriented, highly engaged, or at-risk after its actual summary statistics support that description. Silhouette and other internal metrics quantify geometric structure; they do not demonstrate marketing lift or customer-retention impact. Compare results on PCA-transformed and full scaled feature spaces before making a final methodological choice.
-
-## Dataset and privacy
-
-The project uses the SmartCart customer dataset supplied for this minor project. Before publishing the CSV publicly, verify the source dataset's redistribution terms and confirm that it contains no personal or restricted information. If redistribution is not permitted, keep the data out of the public repository and provide documented instructions for obtaining it separately.
+The customer CSV was supplied for this project. Verify the source license, redistribution rights, and privacy implications before publishing the data publicly. If redistribution is not permitted, remove the CSV from the public repository and document how it can be obtained under its source terms.
 
 ## References
 
@@ -92,8 +80,4 @@ The project uses the SmartCart customer dataset supplied for this minor project.
 - [Scikit-learn: K-Means](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
 - [Scikit-learn: Agglomerative Clustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html)
 - [Scikit-learn: PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html)
-- [Scikit-learn: silhouette score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html)
-
-## Project status
-
-This repository's README establishes the intended organization and workflow. The project should be considered complete only after the notebook, source code, report, dependencies, and any permitted dataset files are committed and verified to run from a clean environment.
+- [Scikit-learn: Silhouette Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html)
