@@ -1,0 +1,5 @@
+KMeans_Cluster,Age,Income,Recency,Total_Spending,Total_Children,Customer_Tenure_Days,NumDealsPurchases,NumWebPurchases,NumCatalogPurchases,NumStorePurchases,NumWebVisitsMonth
+0,55.40,37459.34,49.21,167.83,1.27,342.96,2.56,2.88,0.78,3.75,6.55
+1,59.38,70992.84,48.81,1166.84,0.57,365.41,2.11,5.69,5.12,8.53,3.71
+2,58.87,70911.82,50.54,1192.57,0.46,371.66,1.84,5.80,5.02,8.45,3.70
+3,55.66,37175.74,48.24,169.28,1.27,343.36,2.58,2.74,0.86,3.65,6.58
