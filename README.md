@@ -38,6 +38,17 @@ SmartCart has customer demographic, purchase behaviour, and engagement data, but
 
 The metrics do not unanimously favour a single model. Review segment profiles, stability, and business interpretability before selecting a final approach.
 
+A four-cluster sensitivity check shows the following comparison:
+
+| Feature representation | Algorithm | Silhouette | Calinski-Harabasz | Davies-Bouldin |
+|---|---|---:|---:|---:|
+| PCA (3 components) | K-Means | 0.4092 | 1430.79 | 1.0363 |
+| PCA (3 components) | Agglomerative | 0.3610 | 1222.03 | 0.9144 |
+| Full standardized features | K-Means | 0.1687 | 367.38 | 1.8156 |
+| Full standardized features | Agglomerative | 0.1549 | 311.78 | 2.0260 |
+
+For this run, internal metrics favour the PCA representation at K=4, but the three PCs retain only 49.89% of variance. Treat this as a representation trade-off, not proof that PCA is always better. The small K-Means seed check gave Adjusted Rand Index 1.0000 for seeds 42 vs 43 and 0.9968 for seeds 42 vs 44; this is only a small reproducibility check, not a full stability study.
+
 ## Repository guide
 
 - [Executed analysis notebook](notebooks/smartcart_customer_segmentation.ipynb)
