@@ -103,7 +103,7 @@ Cluster IDs are arbitrary labels, not rankings. Assign business names only after
 
 ## Dataset licensing and privacy
 
-The customer CSV was supplied for this project. Verify the source license, redistribution rights, and privacy implications before publishing the data publicly. If redistribution is not permitted, remove the CSV from the public repository and document how it can be obtained under its source terms.
+The customer CSV was supplied for this project. Verify the source license, redistribution rights, and privacy implications before publishing the data publicly. If redistribution is not permitted, remove the CSV from the public repository and document how it can be obtained under its source terms. See [DATASET_NOTICE.md](DATASET_NOTICE.md) for the scope of the repository license and dataset-specific caution.
 
 ## References
 
