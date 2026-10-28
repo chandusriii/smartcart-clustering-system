@@ -1,0 +1,3 @@
+algorithm,clusters,silhouette,calinski_harabasz,davies_bouldin
+K-Means on PCA,4,0.409201,1430.785207,1.036284
+Agglomerative on PCA,4,0.360983,1222.029252,0.914442
