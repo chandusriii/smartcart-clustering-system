@@ -13,7 +13,7 @@ import seaborn as sns
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans, AgglomerativeClustering
-from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score
+from sklearn.metrics import silhouette_score, calinski_harabasz_score, davies_bouldin_score, adjusted_rand_score
 
 RANDOM_STATE = 42
 CHOSEN_K = 4  # baseline retained from the original minor project; not claimed to be optimal
@@ -110,6 +110,34 @@ def main() -> None:
         return {"algorithm":name,"clusters":len(np.unique(labels)),"silhouette":silhouette_score(x,labels),"calinski_harabasz":calinski_harabasz_score(x,labels),"davies_bouldin":davies_bouldin_score(x,labels)}
     metrics = pd.DataFrame([metric(X_pca, labels_km, "K-Means on PCA"),metric(X_pca, labels_ag, "Agglomerative on PCA")])
     metrics.to_csv(TABLES_DIR / "clustering_metrics.csv", index=False); print(metrics.to_string(index=False))
+
+    # Sensitivity check: compare the same algorithms on PCA space and all standardized features.
+    sensitivity_rows = []
+    for representation_name, representation in [
+        ("PCA (3 components)", X_pca),
+        ("Full standardized features", X_scaled),
+    ]:
+        km_labels = KMeans(n_clusters=CHOSEN_K, random_state=RANDOM_STATE, n_init=10).fit_predict(representation)
+        agg_labels = AgglomerativeClustering(n_clusters=CHOSEN_K, linkage="ward").fit_predict(representation)
+        sensitivity_rows.append(metric(representation, km_labels, f"K-Means - {representation_name}"))
+        sensitivity_rows.append(metric(representation, agg_labels, f"Agglomerative - {representation_name}"))
+    sensitivity = pd.DataFrame(sensitivity_rows)
+    sensitivity.to_csv(TABLES_DIR / "representation_sensitivity_metrics.csv", index=False)
+    print("Representation sensitivity (same K across feature spaces):\\n", sensitivity.to_string(index=False))
+
+    # Small seed check for K-Means label consistency; ARI=1 means identical partitions.
+    seed_labels = {
+        seed: KMeans(n_clusters=CHOSEN_K, random_state=seed, n_init=10).fit_predict(X_pca)
+        for seed in (42, 43, 44)
+    }
+    stability_rows = []
+    for seed in (43, 44):
+        stability_rows.append({
+            "reference_seed": 42,
+            "comparison_seed": seed,
+            "adjusted_rand_index": adjusted_rand_score(seed_labels[42], seed_labels[seed]),
+        })
+    pd.DataFrame(stability_rows).to_csv(TABLES_DIR / "kmeans_seed_stability.csv", index=False)
 
     base = cleaned.drop(columns=[c for c in ["Response", "Complain"] if c in cleaned.columns]).copy()
     base["KMeans_Cluster"] = labels_km; base["Agglomerative_Cluster"] = labels_ag
