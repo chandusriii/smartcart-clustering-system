@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="530" viewBox="0 0 920 530" role="img" aria-labelledby="title desc">
+<title id="title">SmartCart correlation highlights</title><desc id="desc">Strongest selected correlations among numeric features in the retained dataset, including one negative association.</desc>
+<rect width="920" height="530" fill="#fff"/><text x="460" y="42" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#17324d">Correlation Highlights</text><text x="460" y="69" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#536577">Pearson correlation in the filtered dataset · association does not imply causation</text>
+<g font-family="Arial,sans-serif" font-size="14" fill="#31465a">
+<text x="38" y="124">Income ↔ Total spending</text>
+<text x="38" y="194">Catalog purchases ↔ Total spending</text>
+<text x="38" y="264">Income ↔ Catalog purchases</text>
+<text x="38" y="334">Total spending ↔ Store purchases</text>
+<text x="38" y="404">Income ↔ Website visits / month</text>
+</g>
+<g fill="#e9eef3"><rect x="360" y="101" width="425" height="28" rx="5"/><rect x="360" y="171" width="425" height="28" rx="5"/><rect x="360" y="241" width="425" height="28" rx="5"/><rect x="360" y="311" width="425" height="28" rx="5"/><rect x="360" y="381" width="425" height="28" rx="5"/></g>
+<g><rect x="360" y="101" width="335" height="28" rx="5" fill="#1877a8"/><rect x="360" y="171" width="330" height="28" rx="5" fill="#1877a8"/><rect x="360" y="241" width="295" height="28" rx="5" fill="#3d9692"/><rect x="360" y="311" width="287" height="28" rx="5" fill="#3d9692"/><rect x="360" y="381" width="275" height="28" rx="5" fill="#c16b55"/></g>
+<g font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#17324d"><text x="710" y="121">+0.789</text><text x="705" y="191">+0.778</text><text x="670" y="261">+0.694</text><text x="662" y="331">+0.675</text><text x="650" y="401">−0.646</text></g>
+<line x1="360" y1="440" x2="785" y2="440" stroke="#95a7b9"/><text x="360" y="463" font-family="Arial,sans-serif" font-size="12" fill="#536577">0.0</text><text x="548" y="463" font-family="Arial,sans-serif" font-size="12" fill="#536577">0.45</text><text x="770" y="463" font-family="Arial,sans-serif" font-size="12" fill="#536577">0.85</text>
+<rect x="36" y="480" width="850" height="32" rx="6" fill="#eef6fa"/><text x="461" y="501" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#2b536a">Correlated features may contain overlapping signals; examine them before interpreting cluster structure.</text>
+</svg>
