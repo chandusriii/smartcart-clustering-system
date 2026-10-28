@@ -44,6 +44,21 @@ K-Means has higher silhouette and Calinski–Harabasz scores in this run, while 
 
 Cluster IDs are arbitrary. K-Means clusters 1 and 2 have mean income around 71,000 and mean spending around 1,167–1,193, while clusters 0 and 3 have mean income around 37,000 and spending around 168–169. The paired groups appear similar on these summary variables, so more analysis is needed to determine if four segments are meaningfully distinct. The notebook exports mean/median profiles, segment counts, income-versus-spending charts, assignments, and an optional post-clustering response/complaint audit.
 
+### Sensitivity: PCA space versus all standardized features
+
+The same four-cluster setting was evaluated in the three-component PCA representation and in the full 16-feature standardized matrix.
+
+| Representation | Algorithm | Silhouette ↑ | Calinski–Harabasz ↑ | Davies–Bouldin ↓ |
+|---|---|---:|---:|---:|
+| PCA (3 components) | K-Means | 0.4092 | 1430.79 | 1.0363 |
+| PCA (3 components) | Agglomerative | 0.3610 | 1222.03 | 0.9144 |
+| Full standardized features | K-Means | 0.1687 | 367.38 | 1.8156 |
+| Full standardized features | Agglomerative | 0.1549 | 311.78 | 2.0260 |
+
+For this run, the selected four-cluster partitions are more compact and separated according to these internal metrics in the PCA representation. This does not prove that PCA is generally superior: the reduced space retains 49.89% of variance, so the choice involves a trade-off between geometric separation and information retention. Consider the profiles, stability, and business objective along with these scores.
+
+A small K-Means seed check on PCA space gave Adjusted Rand Index (ARI) 1.0000 between random states 42 and 43, and approximately 0.9968 between 42 and 44. This indicates consistent partitions for these selected seeds only; it is not a full stability study across samples or future data.
+
 ## Conclusion and limitations
 The project demonstrates the core stages of an unsupervised segmentation workflow. Its current output is an exploratory segmentation hypothesis, not validated churn prediction, proven marketing lift, or evidence of causality. Future work should compare full-dimensional and PCA-based clustering, check stability over seeds/resamples, compare outlier-handling alternatives, verify whether similar clusters should be merged, and validate segment usefulness with stakeholders. Confirm the dataset's source license and redistribution permissions before public sharing.
 
