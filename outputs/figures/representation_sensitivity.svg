@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="500" viewBox="0 0 920 500" role="img" aria-labelledby="title desc">
+<title id="title">Representation sensitivity at K equals 4</title><desc id="desc">Silhouette scores comparing K-Means and Agglomerative Clustering on PCA and full standardized features.</desc>
+<rect width="920" height="500" fill="#fff"/><text x="460" y="42" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#17324d">Representation Sensitivity at K = 4</text><text x="460" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#536577">Silhouette score · higher indicates better-separated groups under this metric</text>
+<g stroke="#dce5ed"><line x1="110" y1="390" x2="850" y2="390"/><line x1="110" y1="320" x2="850" y2="320"/><line x1="110" y1="250" x2="850" y2="250"/><line x1="110" y1="180" x2="850" y2="180"/><line x1="110" y1="110" x2="850" y2="110"/></g>
+<g font-family="Arial,sans-serif" font-size="13" fill="#536577" text-anchor="end"><text x="95" y="395">0.0</text><text x="95" y="325">0.1</text><text x="95" y="255">0.2</text><text x="95" y="185">0.3</text><text x="95" y="115">0.4</text></g>
+<line x1="110" y1="390" x2="850" y2="390" stroke="#95a7b9"/>
+<g>
+<rect x="170" y="103.6" width="105" height="286.4" rx="5" fill="#1877a8"/><rect x="340" y="137.3" width="105" height="252.7" rx="5" fill="#3d9692"/><rect x="510" y="271.9" width="105" height="118.1" rx="5" fill="#8da9b8"/><rect x="680" y="281.8" width="105" height="108.2" rx="5" fill="#a8c9c4"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17324d" text-anchor="middle"><text x="222" y="91">0.4092</text><text x="392" y="125">0.3610</text><text x="562" y="260">0.1687</text><text x="732" y="270">0.1549</text></g>
+<g font-family="Arial,sans-serif" font-size="14" fill="#354c60" text-anchor="middle"><text x="222" y="415">K-Means</text><text x="222" y="434">PCA (3 PCs)</text><text x="392" y="415">Agglomerative</text><text x="392" y="434">PCA (3 PCs)</text><text x="562" y="415">K-Means</text><text x="562" y="434">Full scaled</text><text x="732" y="415">Agglomerative</text><text x="732" y="434">Full scaled</text></g>
+<rect x="105" y="455" width="740" height="30" rx="6" fill="#eef6fa"/><text x="475" y="475" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#2b536a">PCA metrics are higher in this run, but three PCs retain only 49.89% of variance.</text>
+</svg>
